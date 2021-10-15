@@ -1,49 +1,7 @@
-#include <stdio.h>
+#include "maze.h"
 #include <stdlib.h>
 #include <graphics.h>
-#include <time.h>
-#include <unistd.h>
 
-//Structure Defination
-typedef struct Node
-{
-  int item;
-  char d;
-  struct Node *up;
-  struct Node *down;
-  struct Node *left;
-  struct Node *right;
-} Node;
-
-//Function Prototypes
-struct Node * joinRows(struct Node * , struct Node * );
-struct Node * createRow(int , int , int );
-struct Node * create(int , int );
-void printmaze(int , int , struct Node * , int);
-void block(int, int, struct Node** );
-void solve(int, int, struct Node *);
-
-//Main starts here
-int main()
-{
-  //Input about length and height taken
-  int height, breadth;
-  printf("Enter the length\n");
-  scanf("%d", &height);
-  printf("Enter the breadth\n");
-  scanf("%d", &breadth);
-
-  //Multidimension linked list is created through the below call
-  struct Node* head = create(height, breadth);
-
-  //Blocks(Walls) in the maze are put using the function call below
-  block(height, breadth, &head);
-  
-  //The created maze is solved in the function
-  solve(height, breadth, head);
-
-  exit(0);
-}
 
 //The below function creates multidimension linked list
 struct Node* create(int height, int breadth)
